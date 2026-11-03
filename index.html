@@ -10,13 +10,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&family=Noto+Sans+SC:wght@400;500&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#10233A;      /* 深墨蓝：主色 */
-  --ink-2:#1D3754;
+  --ink:#173A33;      /* 深松绿：主色 */
+  --ink-2:#22493F;
   --paper:#FFFFFF;
-  --mist:#EDF0F3;     /* 冷灰底 */
-  --slate:#5A6878;    /* 次要文字 */
-  --line:#D5DBE2;
-  --brass:#A8834B;    /* 唯一点缀色 */
+  --mist:#EFF1EE;     /* 灰绿底 */
+  --slate:#5F6B66;    /* 次要文字 */
+  --line:#D7DCD8;
+  --brass:#B39A6B;    /* 香槟金：唯一点缀色 */
   --serif:"Noto Serif SC","Songti SC",serif;
   --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
   --latin:"Cormorant Garamond",Georgia,serif;
@@ -51,7 +51,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offs
 }
 .hero .char{position:absolute;right:4%;top:50%;transform:translateY(-54%);
   font-family:var(--serif);font-weight:900;font-size:min(46vw,620px);line-height:1;
-  color:transparent;-webkit-text-stroke:1px rgba(168,131,75,.55);user-select:none;pointer-events:none}
+  color:transparent;-webkit-text-stroke:1px rgba(179,154,107,.55);user-select:none;pointer-events:none}
 .hero .wrap{position:relative;width:100%;padding-bottom:12vh}
 .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(40px,6.2vw,84px);line-height:1.22;letter-spacing:.04em;max-width:11em}
 .hero p{margin-top:36px;max-width:34em;color:rgba(255,255,255,.72);font-size:17px}
@@ -90,7 +90,7 @@ section{padding:140px 0}
 .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-left:1px solid rgba(255,255,255,.18)}
 .step{padding:8px 32px 0;border-right:1px solid rgba(255,255,255,.18)}
 .step i{font-style:normal;font-family:var(--latin);font-size:46px;color:var(--brass);line-height:1}
-.step h4{margin-top:28px;font-family:var(--serif);font-weight:600;font-size:21px;letter-spacing:.06em}
+.step h4{margin-top:0;border-top:2px solid var(--brass);padding-top:24px;font-family:var(--serif);font-weight:600;font-size:21px;letter-spacing:.06em}
 .step p{margin-top:12px;color:rgba(255,255,255,.66);font-size:15px}
 
 /* 组合 */
@@ -131,7 +131,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
     <nav class="links" aria-label="主导航">
       <a href="#about">关于我们</a>
       <a href="#focus">投资方向</a>
-      <a href="#model">合作模式</a>
+      <a href="#model">投资理念</a>
       <a href="#portfolio">投资组合</a>
       <a href="#contact">联系我们</a>
     </nav>
@@ -156,7 +156,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
       </div>
       <div class="figures">
         <div><strong>产业出身</strong><span>源自汽车零部件产业集团，熟悉整车厂与供应链体系。</span></div>
-        <div><strong>政府合作</strong><span>与多地省、市级国资平台合作设立引导基金与双 GP 基金。</span></div>
+        <div><strong>政府合作</strong><span>与多地政府及国资平台长期合作，共同推动区域产业发展。</span></div>
         <div><strong>投招联动</strong><span>以股权投资撬动企业在当地设厂、扩产与研发落地。</span></div>
       </div>
     </div>
@@ -180,14 +180,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
   <section class="model" id="model">
     <div class="wrap">
       <div class="head">
-        <h2>合作模式</h2>
-        <p>我们与地方国资采用双 GP 方式共同管理基金：地方掌握产业规划与政策资源，我们负责项目发现、投资决策与投后赋能，让基金既有回报，也有落地。</p>
+        <h2>投资理念</h2>
+        <p>我们相信，好的投资来自对产业的长期理解。我们用经营者的视角看企业，用产业资源陪伴企业成长。</p>
       </div>
       <div class="flow">
-        <div class="step"><i>1</i><h4>共设基金</h4><p>与省、市级国资平台共同发起，明确产业方向与返投安排。</p></div>
-        <div class="step"><i>2</i><h4>产业招引</h4><p>依托产业网络寻找匹配当地规划的优质企业。</p></div>
-        <div class="step"><i>3</i><h4>投资落地</h4><p>以投资推动企业在当地设立总部、产线或研发中心。</p></div>
-        <div class="step"><i>4</i><h4>投后赋能</h4><p>对接整车厂与产业链客户，支持企业成长与资本化。</p></div>
+        <div class="step"><h4>产业视角</h4><p>从技术、产线、客户与成本出发，判断企业的真实壁垒。</p></div>
+        <div class="step"><h4>长期陪伴</h4><p>不追逐短期热点，与创始团队一起穿越周期。</p></div>
+        <div class="step"><h4>资源赋能</h4><p>对接整车厂与产业链客户，帮助企业拿到订单、扩大产能。</p></div>
+        <div class="step"><h4>区域共赢</h4><p>推动企业在各地落地发展，让投资同时带来产业价值。</p></div>
       </div>
     </div>
   </section>
@@ -211,7 +211,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
 
   <section class="contact" id="contact">
     <div class="wrap">
-      <h2>项目合作与基金合作，<br>欢迎与我们联系。</h2>
+      <h2>期待与优秀的创业者<br>和合作伙伴同行。</h2>
       <dl><dt>商务合作</dt><dd>待补充邮箱</dd><dt>电话</dt><dd>待补充</dd></dl>
       <dl><dt>地址</dt><dd>待补充办公地址</dd></dl>
     </div>
