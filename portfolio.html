@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>投资版图 · 吉晟资本</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Schibsted+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0E2B26;--paper:#fff;--stone:#F2F3F0;--mute:#66716D;--line:#DCE0DC;--jade:#3E8E73;--jade-soft:#D9EBE3;
+  --ease:cubic-bezier(.65,0,.15,1);
+  --sans:"Schibsted Grotesk","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --pad:clamp(20px,4vw,64px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--jade);outline-offset:3px}
+.px{padding:0 var(--pad)}
+
+header{padding-top:clamp(56px,9vh,110px)}
+.kicker{font-size:15px;color:var(--mute);display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.kicker::before{content:"";width:28px;height:1px;background:var(--jade)}
+h1{font-weight:700;font-size:clamp(36px,5.6vw,80px);line-height:1.1;max-width:12em}
+header p{margin-top:24px;color:var(--mute);font-size:18px;max-width:34em}
+
+.map{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:clamp(24px,3vw,48px);margin-top:clamp(40px,7vh,80px);align-items:start}
+.car{position:relative;background:var(--stone);padding:clamp(16px,3vw,40px)}
+svg{display:block;width:100%;height:auto;overflow:visible}
+.body-line{fill:none;stroke:var(--ink);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.thin{fill:none;stroke:#9AA6A1;stroke-width:1.2;stroke-dasharray:4 5}
+.wheel{fill:var(--paper);stroke:var(--ink);stroke-width:2}
+.hub{fill:none;stroke:var(--ink);stroke-width:1.2}
+.zone{fill:var(--jade);opacity:0;transition:opacity .45s var(--ease)}
+.zone.on{opacity:.16}
+.spot{cursor:pointer}
+.spot .ring{fill:var(--paper);stroke:var(--ink);stroke-width:1.5;transition:fill .3s,stroke .3s}
+.spot .plus{stroke:var(--ink);stroke-width:2;transition:stroke .3s}
+.spot .pulse{fill:none;stroke:var(--jade);stroke-width:1.5;opacity:0}
+.spot .count{font-size:13px;font-weight:700;fill:var(--paper)}
+.spot .cbg{fill:var(--jade)}
+.spot.on .ring,.spot:hover .ring{fill:var(--ink);stroke:var(--ink)}
+.spot.on .plus,.spot:hover .plus{stroke:var(--paper)}
+.spot text.lbl{font-size:19px;paint-order:stroke;stroke:var(--stone);stroke-width:7px;stroke-linejoin:round;fill:var(--mute);font-weight:500;transition:fill .3s}
+.spot.on text.lbl{fill:var(--ink)}
+@media (prefers-reduced-motion:no-preference){
+  .spot.on .pulse{animation:pulse 2.2s var(--ease) infinite}
+  .draw{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw 2.4s var(--ease) forwards .2s}
+  .spot{opacity:0;animation:pop .6s var(--ease) forwards;animation-delay:calc(1.6s + var(--i) * .08s)}
+}
+@keyframes pulse{0%{opacity:.9;r:16}100%{opacity:0;r:34}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+
+/* 右侧面板 */
+.panel{position:sticky;top:24px}
+.panel .cat{font-size:15px;color:var(--jade);font-weight:500}
+.panel h2{font-weight:700;font-size:32px;line-height:1.25;margin-top:6px}
+.panel .desc{color:var(--mute);margin-top:10px}
+.list{list-style:none;margin-top:28px;border-top:1px solid var(--ink)}
+.list li{padding:18px 0;border-bottom:1px solid var(--line)}
+.list b{display:block;font-weight:700;font-size:18px}
+.list span{display:block;color:var(--mute);font-size:15px;margin-top:2px}
+.panel.swap .list li{animation:li .5s var(--ease) both;animation-delay:calc(var(--k) * .05s)}
+@keyframes li{from{opacity:0;transform:translateX(10px)}}
+
+/* 车外 */
+.beyond{margin-top:clamp(64px,10vh,110px)}
+.beyond h3{font-weight:700;font-size:clamp(24px,2.6vw,36px)}
+.beyond > p{color:var(--mute);margin-top:8px}
+.groups{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--pad);margin-top:40px;border-top:1px solid var(--ink)}
+.group{padding-top:24px}
+.group h4{font-size:15px;color:var(--jade);font-weight:500}
+.group ul{list-style:none;margin-top:12px}
+.group li{padding:10px 0;border-bottom:1px solid var(--line)}
+.group li b{display:block;font-size:17px}
+.group li span{display:block;color:var(--mute);font-size:14px}
+footer{padding:80px 0 56px;color:var(--mute);font-size:14px}
+
+/* 手机：分类改为横向标签 */
+.tabs{display:none}
+@media (max-width:980px){
+  .map{grid-template-columns:1fr}
+  .panel{position:static}
+  .spot text.lbl{display:none}
+  .tabs{display:flex;gap:8px;overflow-x:auto;margin-top:16px;padding-bottom:4px;scrollbar-width:none}
+  .tabs button{flex:none;border:1px solid var(--line);background:var(--paper);padding:6px 14px;font-size:14px;cursor:pointer}
+  .tabs button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .groups{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){.groups{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="px">
+  <div class="kicker">投资版图</div>
+  <h1>从感知到底盘，我们投资一辆车。</h1>
+  <p>吉晟资本已投 24 家企业，覆盖整车从智能座舱、感知、通信到动力电池与车身结构的关键环节。点击车上的位置，查看对应企业。</p>
+</header>
+
+<main class="px">
+  <div class="map">
+    <div>
+      <div class="car">
+        <svg viewBox="96 70 1040 350" role="img" aria-label="汽车侧视图，标注了已投企业所在的零部件位置">
+          <!-- 高亮区域 -->
+          <g id="zones">
+            <path class="zone" data-z="sense" d="M560 118 L700 112 L700 150 L560 156 Z"/>
+            <path class="zone" data-z="cockpit" d="M420 190 Q480 150 560 140 L600 140 L600 250 L430 250 Z"/>
+            <path class="zone" data-z="compute" d="M610 150 L800 148 L800 260 L610 260 Z"/>
+            <path class="zone" data-z="connect" d="M800 120 L905 130 L960 200 L810 200 Z"/>
+            <path class="zone" data-z="power" d="M330 318 L870 318 L870 350 L330 350 Z"/>
+            <path class="zone" data-z="drive" d="M120 255 L330 245 L330 350 L130 350 Z"/>
+            <path class="zone" data-z="body" d="M880 205 L1060 222 Q1100 230 1102 270 L1104 330 L1030 330 Q1010 270 950 270 Q890 270 875 330 L870 330 Z"/>
+            <path class="zone" data-z="chassis" d="M200 330 Q215 270 270 268 Q330 270 345 330 Z M880 330 Q895 270 950 268 Q1010 270 1025 330 Z"/>
+          </g>
+          <!-- 车身 -->
+          <path class="body-line draw" style="--len:2600" d="M118 330 L124 282 Q130 250 180 240 L400 214 Q470 150 560 132 Q640 118 760 120 Q850 122 905 150 L970 204 L1062 222 Q1100 230 1104 268 L1106 330 L1028 330 Q1015 266 952 266 Q890 266 876 330 L346 330 Q332 266 270 266 Q208 266 196 330 Z"/>
+          <path class="body-line draw" style="--len:1100" d="M430 212 Q490 160 566 148 L640 142 L640 210 Z M660 140 L770 138 Q840 140 880 168 L920 208 L660 210 Z"/>
+          <path class="thin" d="M650 140 L650 320 M440 230 L1000 236 M130 300 L1104 300"/>
+                    <!-- 电池包与电机示意 -->
+          <rect x="380" y="322" width="470" height="20" fill="none" stroke="#9AA6A1" stroke-width="1.2"/>
+          <path d="M405 322 V342 M440 322 V342 M475 322 V342 M510 322 V342 M545 322 V342 M580 322 V342 M615 322 V342 M650 322 V342 M685 322 V342 M720 322 V342 M755 322 V342 M790 322 V342 M825 322 V342" stroke="#C3CBC7" stroke-width="1"/>
+          <!-- 车轮 -->
+          <circle class="wheel" cx="270" cy="340" r="62"/><circle class="hub" cx="270" cy="340" r="30"/>
+          <circle class="wheel" cx="952" cy="340" r="62"/><circle class="hub" cx="952" cy="340" r="30"/>
+          <line x1="100" y1="404" x2="1130" y2="404" stroke="var(--line)" stroke-width="2"/>
+          <!-- 标注点 -->
+          <g id="spots"></g>
+        </svg>
+      </div>
+      <div class="tabs" id="tabs" role="group" aria-label="零部件分类"></div>
+    </div>
+
+    <aside class="panel" id="panel" aria-live="polite"></aside>
+  </div>
+
+  <section class="beyond">
+    <h3>车之外：制造、测试与前沿</h3>
+    <p>围绕汽车产业的装备、测试、数字化与前沿技术布局。</p>
+    <div class="groups" id="groups"></div>
+  </section>
+</main>
+<footer class="px">© 2026 吉晟资本 Jisheng Capital</footer>
+
+<script>
+const CATS=[
+ {id:"sense",name:"环境感知",x:630,y:112,lx:0,ly:-26,desc:"让车看清周围与车内环境的传感器。",
+  cos:[["北醒光子","车规级激光雷达"],["求是光谱","光谱传感芯片与模组"]]},
+ {id:"cockpit",name:"智能座舱",x:520,y:196,lx:0,ly:-26,desc:"人与车交互的界面：屏幕、导航、语音与座舱电子。",
+  cos:[["博泰车联","车载操作系统与智能座舱"],["富晟（广东）汽车电子","智能座舱车载电子系统"],["美行科技","车载导航与地图引擎"],["聆思智能","端侧 AI 语音芯片"]]},
+ {id:"compute",name:"车载网络与计算",x:725,y:200,lx:0,ly:-26,desc:"连接各个控制器的“神经系统”，以及背后的芯片。",
+  cos:[["赫千电子","车载以太网与高性能计算平台"],["昆高新芯","以太网 PHY 与交换芯片"],["博立电子","车载电子"]]},
+ {id:"connect",name:"车联网与安全",x:880,y:150,lx:28,ly:-18,desc:"车与云、车与路的通信，以及信息安全。",
+  cos:[["联想懂的通信","物联网连接管理平台"],["爱瑟福信息","车联网技术与解决方案"],["信长城科技","车路协同与信息安全"],["智御维科","网络安全防护"]]},
+ {id:"power",name:"动力电池与氢能",x:615,y:332,lx:0,ly:42,desc:"整车的能量来源：电池与燃料电池。",
+  cos:[["东驰新能源","固态电池"],["唐锋能源","氢燃料电池膜电极"]]},
+ {id:"drive",name:"电驱与热管理",x:220,y:282,lx:0,ly:-26,desc:"把电能变成动力，并管理整车温度。",
+  cos:[["富晟汽车动力","电驱动系统与热管理"]]},
+ {id:"body",name:"车身结构",x:1040,y:262,lx:0,ly:-26,desc:"车身结构件与轻量化零部件。",
+  cos:[["英利汽车","车身结构件与轻量化零部件"],["菲格瑞特","汽车零部件"]]},
+ {id:"chassis",name:"底盘零部件",x:952,y:340,lx:0,ly:-40,desc:"底盘衬套、减振等关键橡胶件与材料。",
+  cos:[["实发汽车","汽车橡胶与新材料零部件"]]}
+];
+const GROUPS=[
+ ["智能制造装备",[["晟科智能","智能控制与精密制造"]]],
+ ["研发测试",[["清研精准","AI 驱动的汽车测试验证平台"]]],
+ ["数字化与生态",[["嘉诚信息","软件与信息技术服务"],["观注传媒","汽车后市场传媒平台"]]],
+ ["前沿科技",[["鲲腾量子","量子核心器件"]]]
+];
+
+const NS="http://www.w3.org/2000/svg",spots=document.getElementById('spots'),panel=document.getElementById('panel'),tabs=document.getElementById('tabs');
+const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e};
+CATS.forEach((c,i)=>{
+  const g=el('g',{class:'spot',tabindex:0,role:'button','aria-label':c.name+'，'+c.cos.length+'家企业','data-z':c.id,style:'--i:'+i},spots);
+  el('circle',{class:'pulse',cx:c.x,cy:c.y,r:16},g);
+  el('circle',{class:'ring',cx:c.x,cy:c.y,r:16},g);
+  el('path',{class:'plus',d:`M${c.x-6} ${c.y}H${c.x+6}M${c.x} ${c.y-6}V${c.y+6}`},g);
+  el('circle',{class:'cbg',cx:c.x+15,cy:c.y-14,r:10},g);
+  const n=el('text',{class:'count',x:c.x+15,y:c.y-9.5,'text-anchor':'middle'},g);n.textContent=c.cos.length;
+  const l=el('text',{class:'lbl',x:c.x+c.lx,y:c.y+c.ly,'text-anchor':c.lx?'start':'middle'},g);l.textContent=c.name;
+  g.addEventListener('click',()=>pick(c.id));
+  g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(c.id)}});
+  const b=document.createElement('button');b.textContent=c.name;b.dataset.z=c.id;b.onclick=()=>pick(c.id);tabs.appendChild(b);
+});
+function pick(id){
+  const c=CATS.find(x=>x.id===id);
+  document.querySelectorAll('[data-z]').forEach(e=>{
+    const on=e.dataset.z===id;e.classList.toggle('on',on);
+    if(e.tagName==='BUTTON')e.setAttribute('aria-pressed',on);
+  });
+  panel.classList.remove('swap');void panel.offsetWidth;panel.classList.add('swap');
+  panel.innerHTML=`<div class="cat">${c.cos.length} 家已投企业</div><h2>${c.name}</h2><p class="desc">${c.desc}</p>
+  <ul class="list">${c.cos.map((x,k)=>`<li style="--k:${k}"><b>${x[0]}</b><span>${x[1]}</span></li>`).join('')}</ul>`;
+}
+document.getElementById('groups').innerHTML=GROUPS.map(([h,l])=>`<div class="group"><h4>${h}</h4><ul>${l.map(x=>`<li><b>${x[0]}</b><span>${x[1]}</span></li>`).join('')}</ul></div>`).join('');
+pick('cockpit');
+</script>
+</body>
+</html>
