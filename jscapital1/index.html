@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>吉晟资本 Jisheng Capital</title>
+<meta name="description" content="吉晟资本：总部位于长春的私募股权投资机构，以“汽车+”为战略，投资具身智能、光电与半导体、人工智能、低空与无人驾驶等硬科技企业。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Schibsted+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0E2B26;     /* 深松绿：文字与深色块 */
+  --paper:#FFFFFF;
+  --stone:#F2F3F0;   /* 浅石灰底 */
+  --mute:#66716D;    /* 次要文字 */
+  --line:#DCE0DC;
+  --jade:#3E8E73;    /* 唯一点缀色 */
+  --ease:cubic-bezier(.65,0,.15,1);
+  --sans:"Schibsted Grotesk","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --pad:clamp(20px,4vw,64px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:400;font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--jade);outline-offset:4px}
+.px{padding-left:var(--pad);padding-right:var(--pad)}
+
+/* 导航 */
+.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+.nav.line{border-color:var(--line)}
+.nav .px{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:14px;font-weight:700;font-size:19px;letter-spacing:.08em}
+.logo i{display:block;width:22px;height:22px;position:relative}
+.logo i::before,.logo i::after{content:"";position:absolute;background:var(--ink)}
+.logo i::before{left:9px;top:0;width:4px;height:22px}
+.logo i::after{top:9px;left:0;height:4px;width:22px;background:var(--jade)}
+.logo small{font-weight:400;font-size:14px;letter-spacing:0;color:var(--mute)}
+.links{display:flex;gap:36px;font-size:15px}
+.links a{color:var(--mute);transition:color .2s}
+.links a:hover{color:var(--ink)}
+
+/* 首屏 */
+.hero{padding-top:clamp(64px,11vh,140px)}
+.hero h1{font-weight:700;font-size:clamp(44px,8.4vw,132px);line-height:1.08;letter-spacing:-.01em}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln>span{display:block}
+.hero .sub{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-top:48px}
+.hero .sub p{max-width:30em;color:var(--mute);font-size:18px}
+.hero .sub span{font-size:15px;color:var(--mute);white-space:nowrap}
+.stage{position:relative;margin-top:clamp(48px,8vh,96px);height:min(72vh,720px);background:var(--ink);overflow:hidden}
+.stage .bar{position:absolute;background:var(--paper)}
+.stage .v{left:50%;top:12%;bottom:12%;width:clamp(28px,4.2vw,64px);transform:translateX(-50%);transform-origin:top;opacity:.95}
+.stage .h{top:50%;left:12%;right:12%;height:clamp(28px,4.2vw,64px);transform:translateY(-50%);transform-origin:left;background:var(--jade)}
+.stage .tag{position:absolute;color:rgba(255,255,255,.62);font-size:clamp(13px,1.2vw,16px);letter-spacing:.06em}
+.stage .tag b{display:block;color:#fff;font-weight:500;font-size:clamp(16px,1.6vw,22px);letter-spacing:.04em}
+.t1{left:var(--pad);top:var(--pad)}.t2{right:var(--pad);top:var(--pad);text-align:right}
+.t3{left:var(--pad);bottom:var(--pad)}.t4{right:var(--pad);bottom:var(--pad);text-align:right}
+.stage .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:clamp(110px,13vw,190px);aspect-ratio:1;background:var(--ink);display:grid;place-items:center;color:#fff;font-weight:700;font-size:clamp(20px,2.4vw,34px);letter-spacing:.1em}
+
+/* 版块 */
+section{padding:clamp(96px,14vh,168px) 0}
+.kicker{font-size:15px;color:var(--mute);margin-bottom:40px;display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:28px;height:1px;background:var(--jade)}
+h2{font-weight:700;font-size:clamp(32px,4.4vw,64px);line-height:1.15;letter-spacing:-.005em}
+
+/* 大段宣言：滚动时逐字点亮 */
+.manifesto p{font-weight:500;font-size:clamp(26px,3.3vw,48px);line-height:1.45;max-width:24em}
+.manifesto p .w{color:#C9D0CC;transition:color .5s}
+.manifesto p .w.on{color:var(--ink)}
+.manifesto .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--pad);margin-top:clamp(64px,10vh,120px);border-top:1px solid var(--line);padding-top:32px}
+.facts b{display:block;font-weight:700;font-size:20px}
+.facts span{display:block;margin-top:8px;color:var(--mute);font-size:16px;max-width:22em}
+
+/* 汽车+ 方向：可展开的大字列表 */
+.themes{background:var(--stone)}
+.themes h2{margin-bottom:clamp(48px,8vh,88px);max-width:14em}
+.row{border-top:1px solid var(--line)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row button{all:unset;cursor:pointer;width:100%;display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;padding:clamp(22px,3.4vh,36px) 0}
+.row button span{font-weight:700;font-size:clamp(26px,3.6vw,52px);letter-spacing:.01em;transition:transform .6s var(--ease),color .3s}
+.row button em{font-style:normal;color:var(--mute);font-size:15px}
+.row button:hover span{transform:translateX(14px)}
+.row .pm{width:22px;height:22px;position:relative;flex:none}
+.row .pm::before,.row .pm::after{content:"";position:absolute;background:var(--ink);transition:transform .5s var(--ease)}
+.row .pm::before{left:10px;top:0;width:2px;height:22px}
+.row .pm::after{top:10px;left:0;height:2px;width:22px}
+.row.open .pm::before{transform:rotate(90deg)}
+.row.open button span{color:var(--jade)}
+.row .body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .7s var(--ease)}
+.row.open .body{grid-template-rows:1fr}
+.row .body>div{overflow:hidden}
+.row .body p{max-width:40em;color:var(--mute);padding-bottom:36px;font-size:18px}
+.row .meta{display:flex;align-items:center;gap:28px}
+
+/* 投资组合 */
+.portfolio .top{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:56px}
+.portfolio .top p{color:var(--mute);max-width:24em}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink)}
+.co{padding:32px 24px 40px 0;border-bottom:1px solid var(--line);min-height:180px;display:flex;flex-direction:column;justify-content:space-between}
+.co b{font-weight:700;font-size:24px}
+.co span{color:var(--mute);font-size:15px}
+.co.tbd b{color:var(--line)}
+
+/* 联系 */
+.contact{background:var(--ink);color:#fff}
+.contact h2{max-width:13em}
+.contact .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--pad);margin-top:80px;border-top:1px solid rgba(255,255,255,.18);padding-top:32px}
+.contact dt{color:rgba(255,255,255,.55);font-size:15px}
+.contact dd{margin-top:6px;font-size:18px}
+footer{background:var(--ink);color:rgba(255,255,255,.45);font-size:14px;border-top:1px solid rgba(255,255,255,.12)}
+footer .px{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-top:28px;padding-bottom:28px}
+
+/* 动效 */
+@media (prefers-reduced-motion:no-preference){
+  .hero h1 .ln>span{animation:up 1.2s var(--ease) both}
+  .hero h1 .ln:nth-child(2)>span{animation-delay:.1s}
+  .hero .sub{animation:fade 1.2s ease both .55s}
+  .stage .v{animation:growV 1.4s var(--ease) both .7s}
+  .stage .h{animation:growH 1.4s var(--ease) both .95s}
+  .stage .core{animation:fade 1s ease both 1.9s}
+  .stage .tag{animation:fade 1.2s ease both 2.1s}
+  .js .rv{opacity:0;transform:translateY(28px);transition:opacity 1s ease,transform 1.1s var(--ease);transition-delay:var(--d,0s)}
+  .js .rv.in{opacity:1;transform:none}
+}
+@keyframes up{from{transform:translateY(105%)}}
+@keyframes fade{from{opacity:0}}
+@keyframes growV{from{transform:translateX(-50%) scaleY(0)}}
+@keyframes growH{from{transform:translateY(-50%) scaleX(0)}}
+
+@media (max-width:860px){
+  .links{display:none}
+  .hero .sub,.portfolio .top{flex-direction:column;align-items:flex-start}
+  .manifesto .facts,.contact .cols{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr 1fr}
+  .row .meta em{display:none}
+  .t2,.t4{text-align:right}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="px">
+    <a class="logo" href="#top" aria-label="吉晟资本首页"><i aria-hidden="true"></i>吉晟资本<small>Jisheng Capital</small></a>
+    <nav class="links" aria-label="主导航">
+      <a href="#about">关于我们</a>
+      <a href="#themes">投资方向</a>
+      <a href="#portfolio">投资组合</a>
+      <a href="#contact">联系我们</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="padding-bottom:0">
+    <div class="px">
+      <h1><span class="ln"><span>以汽车为根，</span></span><span class="ln"><span>向产业纵深。</span></span></h1>
+      <div class="sub">
+        <p>吉晟资本是一家总部位于长春的产业背景私募股权投资机构，以“汽车+”为战略，投资下一代硬科技。</p>
+        <span>Automotive, and beyond.</span>
+      </div>
+    </div>
+    <div class="stage" aria-hidden="true">
+      <div class="bar v"></div><div class="bar h"></div>
+      <div class="core">汽车</div>
+      <div class="tag t1">＋<b>具身智能</b></div>
+      <div class="tag t2">＋<b>光电与半导体</b></div>
+      <div class="tag t3">＋<b>人工智能</b></div>
+      <div class="tag t4">＋<b>低空与无人驾驶</b></div>
+    </div>
+  </section>
+
+  <section class="manifesto" id="about">
+    <div class="px">
+      <div class="kicker">关于我们</div>
+      <p id="mf">我们从汽车零部件产业走来，懂技术、懂产线、也懂客户。我们用经营者的眼光判断一家企业的真实壁垒，再用产业资源陪它走得更远。</p>
+      <div class="facts">
+        <div class="rv"><b>产业出身</b><span>源自汽车零部件产业，熟悉整车厂与供应链体系。</span></div>
+        <div class="rv"><b>扎根长春</b><span>立足中国汽车工业重镇，连接全国产业与区域资源。</span></div>
+        <div class="rv"><b>长期陪伴</b><span>不追逐短期热点，与创始团队一起穿越周期。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="themes" id="themes">
+    <div class="px">
+      <div class="kicker">投资方向</div>
+      <h2>汽车是我们的根基，也是通往更多产业的入口。</h2>
+      <div class="rows">
+        <div class="row open"><button aria-expanded="true"><span>汽车产业链</span><div class="meta"><em>Automotive</em><i class="pm"></i></div></button>
+          <div class="body"><div><p>智能座舱、车联网、汽车电子、关键零部件与新材料。这是我们最熟悉的领域，也是“汽车+”的起点。</p></div></div></div>
+        <div class="row"><button aria-expanded="false"><span>具身智能</span><div class="meta"><em>Embodied AI</em><i class="pm"></i></div></button>
+          <div class="body"><div><p>人形与具身机器人整机及核心零部件。汽车供应链的精密制造与规模化能力，正是机器人产业最需要的。</p></div></div></div>
+        <div class="row"><button aria-expanded="false"><span>光电与半导体</span><div class="meta"><em>Photonics &amp; Semis</em><i class="pm"></i></div></button>
+          <div class="body"><div><p>激光雷达、光谱芯片、激光通信与车规级芯片，从感知到算力的底层硬件。</p></div></div></div>
+        <div class="row"><button aria-expanded="false"><span>人工智能</span><div class="meta"><em>AI</em><i class="pm"></i></div></button>
+          <div class="body"><div><p>面向汽车与制造场景落地的 AI 应用与基础设施。</p></div></div></div>
+        <div class="row"><button aria-expanded="false"><span>低空与无人驾驶</span><div class="meta"><em>Low-altitude &amp; Autonomy</em><i class="pm"></i></div></button>
+          <div class="body"><div><p>无人小车、无人配送与低空飞行器，汽车技术向新载具的延伸。</p></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio" id="portfolio">
+    <div class="px">
+      <div class="kicker">投资组合</div>
+      <div class="top"><h2>部分已投企业</h2><p>完整名单欢迎与我们联系。</p></div>
+      <div class="grid">
+        <div class="co rv"><b>博泰车联</b><span>智能座舱与车联网<br>港交所上市 2889.HK</span></div>
+        <div class="co rv"><b>美行科技</b><span>车载导航与智能出行</span></div>
+        <div class="co rv"><b>北醒</b><span>激光雷达</span></div>
+        <div class="co rv"><b>求是光谱</b><span>光谱芯片</span></div>
+        <div class="co tbd rv"><b>待补充</b><span>企业名称与领域</span></div>
+        <div class="co tbd rv"><b>待补充</b><span>企业名称与领域</span></div>
+        <div class="co tbd rv"><b>待补充</b><span>企业名称与领域</span></div>
+        <div class="co tbd rv"><b>待补充</b><span>企业名称与领域</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="px">
+      <div class="kicker" style="color:rgba(255,255,255,.55)">联系我们</div>
+      <h2>期待与优秀的创业者和合作伙伴同行。</h2>
+      <dl class="cols">
+        <div><dt>商务合作</dt><dd>待补充邮箱</dd></div>
+        <div><dt>电话</dt><dd>待补充</dd></div>
+        <div><dt>地址</dt><dd>吉林省长春市（详细地址待补充）</dd></div>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer><div class="px"><span>© 2026 吉晟资本 Jisheng Capital</span><span>备案号待补充</span></div></footer>
+
+<script>
+document.documentElement.classList.add('js');
+const calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const nav=document.getElementById('nav');
+
+/* 宣言逐字点亮 */
+const mf=document.getElementById('mf');
+mf.innerHTML=[...mf.textContent].map(c=>`<span class="w">${c}</span>`).join('');
+const chars=[...mf.querySelectorAll('.w')];
+function light(){
+  const r=mf.getBoundingClientRect(),vh=innerHeight;
+  const p=calm?1:Math.min(1,Math.max(0,(vh*0.85-r.top)/(r.height+vh*0.35)));
+  const n=Math.round(p*chars.length);
+  chars.forEach((c,i)=>c.classList.toggle('on',i<n));
+}
+function onScroll(){nav.classList.toggle('line',scrollY>8);light();}
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',light);onScroll();
+
+/* 方向列表展开 */
+document.querySelectorAll('.row button').forEach(b=>b.addEventListener('click',()=>{
+  const row=b.parentElement,open=!row.classList.contains('open');
+  row.classList.toggle('open',open);b.setAttribute('aria-expanded',open);
+}));
+
+/* 进场 */
+document.querySelectorAll('.facts,.grid').forEach(g=>[...g.children].forEach((el,i)=>el.style.setProperty('--d',(i%4*0.08)+'s')));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.2});
+document.querySelectorAll('.rv').forEach(el=>calm?el.classList.add('in'):io.observe(el));
+</script>
+</body>
+</html>
